@@ -6,24 +6,29 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "provider_join_type_product")
+@Table(name = "products")
 @Data
-public class ProviderJoinProductType {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    @JoinColumn(name = "provider_id",nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Provider provider;
+    @NotEmpty(message = "The name can't be empty")
+    @Column(nullable = false)
+    private String name;
 
+    @NotEmpty(message = "The description can't be empty")
+    @Column(nullable = false)
+    private String description;
+
+    //RelationShips
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "product_type_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private ProductType productType;
+    private ProviderJoinProductType providerJoinProductType;
+
 }
