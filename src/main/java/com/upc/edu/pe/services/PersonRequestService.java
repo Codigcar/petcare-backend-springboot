@@ -6,6 +6,6 @@ import com.upc.edu.pe.models.PersonRequest;
 import java.util.List;
 
 public interface PersonRequestService {
-    PersonRequest create (Long peopleId, Long petId, Long providerId, Long servicesId, PersonRequest personRequest);
+    PersonRequest create (Long personId, Long petId, Long providerId, Long productTypeId, Long productId, PersonRequest personRequest);
     List<PersonRequest> getAllByProductId(Long productId);
 }

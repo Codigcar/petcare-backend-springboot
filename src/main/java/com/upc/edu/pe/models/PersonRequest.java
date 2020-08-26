@@ -42,12 +42,6 @@ public class PersonRequest {
     @Column(name = "product_type_name")
     private String productTypeName;
 
-    @Column(name = "product_name")
-    private String productName;
-
-    @Column(name = "pet_name")
-    private String petName;
-
     private int status;
 
     @Column(name = "person_name")

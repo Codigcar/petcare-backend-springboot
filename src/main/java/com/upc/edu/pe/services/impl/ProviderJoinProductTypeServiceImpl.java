@@ -34,17 +34,12 @@ public class ProviderJoinProductTypeServiceImpl implements ProviderJoinProductTy
             throw new ResourceNotFoundException("BusinessProfile Not Found");
 
         return providerRepository.findById(providerId).map( providerBD -> {
-
             return productTypeRepository.findById(productTypeId).map( productTypeBD -> {
-
                 providerJoinProductType.setProvider(providerBD);
                 providerJoinProductType.setProductType(productTypeBD);
-
                 return providerJoinProductTypeRepository.save(providerJoinProductType);
-
             }).orElseThrow(()->new ResourceNotFoundException(
                     "ProductType Not Found "));
-
         }).orElseThrow(()->new ResourceNotFoundException(
                 "Provider Not Found "));
     }
