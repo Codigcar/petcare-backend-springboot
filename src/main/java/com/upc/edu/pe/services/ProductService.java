@@ -11,6 +11,9 @@ public interface ProductService {
     Page<Product> getAllByProviderJoinTypeProductId (Long providerJoinTypeProductId, Pageable pageable);
      Product createProduct(Long businessId,Long providerId, Long providerJoinTypeProductId,Product product);
     Product updateProduct(Long providerJoinTypeProductId,Long productId,Product productDetails);
-    ResponseEntity<?> deleteProduct(Long providerJoinTypeProductId,Long productId);
+    /*ResponseEntity<?> deleteProduct(Long providerJoinTypeProductId,Long productId);*/
     List<Product> getAllProductsByProviderJoinProductTypeId(Long providerJoinProductTypeId);
+
+    List<Product> getAllProductsByProviderIdAndProductTypeId(Long providerId, Long productTypeId);
+
 }

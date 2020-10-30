@@ -21,8 +21,6 @@ public class SavePersonRequestResource {
 
     private String productName;
 
-    private String petName;
-
     private int status;
 
     private String PersonName;

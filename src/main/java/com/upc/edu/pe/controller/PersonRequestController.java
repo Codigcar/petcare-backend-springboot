@@ -1,12 +1,17 @@
 package com.upc.edu.pe.controller;
 
 import com.upc.edu.pe.models.PersonRequest;
+import com.upc.edu.pe.models.ProductType;
 import com.upc.edu.pe.resource.PersonRequestResource;
 import com.upc.edu.pe.resource.save.SavePersonRequestResource;
 import com.upc.edu.pe.services.PersonRequestService;
+import com.upc.edu.pe.services.ProviderJoinProductTypeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/people/{personId}/pets/{petId}/providers/{providerId}/productType/{productTypeId}/products/{productId}/requests")
@@ -37,4 +42,17 @@ public class PersonRequestController {
         return mapper.map(entity, PersonRequestResource.class);
     }
 
+}
+
+@RequestMapping("/api/people/{personId}/request")
+@RestController
+class PersonRequestGetController {
+
+    @Autowired
+    private PersonRequestService personRequestService;
+
+    @GetMapping
+    public ResponseEntity<List<PersonRequest>> getRequest(@PathVariable(name = "personId")Long personId){
+        return ResponseEntity.ok(personRequestService.getAllByPersonId(personId));
+    }
 }

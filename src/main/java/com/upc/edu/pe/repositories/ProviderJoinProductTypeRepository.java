@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface ProviderJoinProductTypeRepository extends JpaRepository<ProviderJoinProductType,Long> {
 
-    @Query("select pjpt from ProviderJoinProductType  pjpt where pjpt.provider.id = ?1")
+    @Query("select pjpt.productType from ProviderJoinProductType  pjpt where pjpt.provider.id = ?1")
     List<ProductType> getAllProductTypesByProviderId(Long providerId);
 
 

@@ -96,4 +96,9 @@ public class PersonProfileServiceImpl implements PersonProfileService {
         }).orElseThrow(() -> new ResourceNotFoundException("Person Not Found"));
     }
 
+    @Override
+    public PersonProfile getPersonProfileByEmail(String email) {
+        return personProfileRepository.getPersonProfileByEmail(email);
+    }
+
 }

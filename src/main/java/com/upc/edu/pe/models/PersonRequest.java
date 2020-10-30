@@ -42,10 +42,19 @@ public class PersonRequest {
     @Column(name = "product_type_name")
     private String productTypeName;
 
+    @Column(name = "product_name")
+    private String productName;
+
     private int status;
 
     @Column(name = "person_name")
     private String PersonName;
+
+    private String petName;
+
+    private String personPhone;
+
+    private String petPhoto;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pet_id", nullable = false)

@@ -14,5 +14,6 @@ public interface PersonProfileService {
     PersonProfile updatePerson(Long personId, PersonProfile personProfileRequest);
     ResponseEntity<?> deletePerson(Long personId);
     //List<PersonProfile> getPersonProfileByPersonId (Long personId, Pageable pageable);
+    PersonProfile getPersonProfileByEmail(String email);
 
 }

@@ -70,18 +70,23 @@ public class ProductServiceImpl implements ProductService {
         }).orElseThrow(()->new ResourceNotFoundException("Product","Id",productId));
     }
 
-    @Override
+    /*@Override
     public ResponseEntity<?> deleteProduct(Long providerJoinTypeProductId,Long productId) {
         return productRepository.findByIdAndProviderJoinProductTypeId(providerJoinTypeProductId,productId).map(product -> {
             productRepository.delete(product);
             return ResponseEntity.ok().build();
         }).orElseThrow(()->new ResourceNotFoundException(
                 "Product not found with Id"+productId+"and ProviderJoinProductId"+providerJoinTypeProductId));
-    }
+    }*/
 
 
     @Override
     public List<Product> getAllProductsByProviderJoinProductTypeId(Long providerJoinProductTypeId) {
         return productRepository.findAllByProviderJoinProductTypeId(providerJoinProductTypeId);
+    }
+
+    @Override
+    public List<Product> getAllProductsByProviderIdAndProductTypeId(Long providerId, Long productTypeId) {
+        return productRepository.getAllProductsByProviderIdAndProductTypeId(providerId, productTypeId);
     }
 }

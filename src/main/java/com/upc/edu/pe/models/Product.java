@@ -26,7 +26,7 @@ public class Product {
 
     //RelationShips
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    @JoinColumn(name = "product_type_id",nullable = false)
+    @JoinColumn(name = "provider_join_product_type_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private ProviderJoinProductType providerJoinProductType;

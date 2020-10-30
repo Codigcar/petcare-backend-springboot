@@ -45,7 +45,7 @@ public class PersonPetsController {
     @PostMapping
     public PetResource createPet(@PathVariable(name = "peopleId")Long peopleId,
                                  @Valid @RequestBody SavePetResource resource){
-        return convertToResource(petService.createPet(peopleId,convertToEntity(resource)));
+        return convertToResource((Pet) petService.createPet(peopleId,convertToEntity(resource)));
     }
 
     @PutMapping("/{petId}")

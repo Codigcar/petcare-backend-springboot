@@ -38,6 +38,11 @@ public class PeopleAccountsController {
         return convertToResource(personProfileService.getPersonById(peopleId));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<PersonProfileResource> getPersonProfileByEmail(@PathVariable(name = "email") String email){
+        return ResponseEntity.ok(convertToResource(personProfileService.getPersonProfileByEmail(email)));
+    }
+
     @PostMapping
     public PersonProfileResource createCustomer(@Valid @RequestBody SavePersonProfileResource resource){
         return convertToResource(personProfileService.createPerson(convertToEntity(resource)));

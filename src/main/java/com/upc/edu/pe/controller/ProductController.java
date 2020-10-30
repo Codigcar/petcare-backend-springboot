@@ -35,9 +35,11 @@ public class ProductController {
         List<ProductResource> resources=productPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
         return new PageImpl<>(resources,pageable,resources.size());
     }*/
-    @GetMapping
-    public ResponseEntity<List<ProductResource>> getAllProducts(@PathVariable(name = "productTypeId") Long productTypeId){
-        List<Product> products =productService.getAllProductsByProviderJoinProductTypeId(productTypeId);
+   @GetMapping
+    public ResponseEntity<List<ProductResource>> getAllProductsByProviderIdAndProductTypeId(
+            @PathVariable(name = "providerId") Long providerId,
+            @PathVariable(name="productTypeId")Long productTypeId){
+        List<Product> products =productService.getAllProductsByProviderIdAndProductTypeId(providerId, productTypeId);
         List<ProductResource>  resources=products.stream().map(this::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(resources);
     }
@@ -49,6 +51,12 @@ public class ProductController {
                                            @Valid @RequestBody SaveProductResource resource){
         return convertToResource(productService.createProduct(businessId,providerId, productTypeId,convertToEntity(resource)));
     }
+
+   /* @GetMapping
+    public ResponseEntity<List<ProductResource>> (@PathVariable("providerId") Long providerId,
+                                                    @PathVariable("productTypeId")Long productTypeId){
+
+    }*/
 
     private ProductResource convertToResource(Product entity) {
         return mapper.map(entity, ProductResource.class);

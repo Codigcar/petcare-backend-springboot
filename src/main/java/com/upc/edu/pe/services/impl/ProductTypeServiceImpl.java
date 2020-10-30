@@ -51,4 +51,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public Long getIdByProductTypeName(String name) {
+        return productTypeRepository.getIdByProductTypeName(name);
+    }
 }

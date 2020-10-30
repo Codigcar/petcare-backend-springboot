@@ -1,17 +1,12 @@
 package com.upc.edu.pe.controller;
 
 
-import com.upc.edu.pe.models.PersonProfile;
 import com.upc.edu.pe.models.ProductType;
-import com.upc.edu.pe.resource.PersonProfileResource;
 import com.upc.edu.pe.resource.ProductTypeResource;
 import com.upc.edu.pe.resource.save.SaveProductTypeResource;
 import com.upc.edu.pe.services.ProductTypeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +30,11 @@ public class ProductTypeController {
         return ResponseEntity.ok(productTypeResources);
 
     }
+    @GetMapping("/{name}")
+    public ResponseEntity<Long> getIdByProductTypeName(@PathVariable(name = "name") String name){
+        return ResponseEntity.ok(productTypeService.getIdByProductTypeName(name));
+    }
+
 
     @GetMapping("/{id}")
     public ProductTypeResource getProductTypeById(@PathVariable(name = "id")Long serviceTypeId){

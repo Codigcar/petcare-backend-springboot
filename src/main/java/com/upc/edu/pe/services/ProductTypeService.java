@@ -15,4 +15,7 @@ public interface ProductTypeService {
     ProductType updateServiceType(Long serviceTypeId, ProductType productTypeRequest);
     ResponseEntity<?> deleteServiceType(Long serviceTypeId);
 
+    Long getIdByProductTypeName(String name);
+
+
 }

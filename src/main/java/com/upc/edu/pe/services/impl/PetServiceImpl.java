@@ -6,6 +6,7 @@ import com.upc.edu.pe.models.Pet;
 import com.upc.edu.pe.repositories.PersonProfileRepository;
 import com.upc.edu.pe.repositories.PetRepository;
 import com.upc.edu.pe.services.PetService;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +37,14 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet createPet(Long personId, Pet pet) {
-        return personProfileRepository.findById(personId).map(personDB -> {
+        return (Pet) personProfileRepository.findById(personId).map(personDB -> {
             pet.setPersonProfile(personDB);
-            return petRepository.save(pet);
+            try {
+               return petRepository.save(pet);
+            } catch (Exception e ) {
+                System.out.print(e);
+                return new ResourceNotFoundException("No se pudo insertar Pet");
+            }
         }).orElseThrow(()->new ResourceNotFoundException(
                 "Person Not Found"));
     }

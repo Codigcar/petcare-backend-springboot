@@ -2,6 +2,7 @@ package com.upc.edu.pe.services.impl;
 
 import com.upc.edu.pe.exception.ResourceNotFoundException;
 import com.upc.edu.pe.models.PersonRequest;
+import com.upc.edu.pe.models.Provider;
 import com.upc.edu.pe.repositories.*;
 import com.upc.edu.pe.services.PersonRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,10 @@ public class PersonRequestServiceImpl implements PersonRequestService {
                             personRequest.setVeterinaryName(providerBD.getBusinessName());
                             personRequest.setProductTypeName(productTypeBD.getName());
                             personRequest.setPersonName(personBD.getName());
+                            personRequest.setPetName(petBD.getName());
+                            personRequest.setProductName(productBD.getName());
+                            personRequest.setPersonPhone(personBD.getPhone().toString());
+                            personRequest.setPetPhoto(petBD.getPhoto());
                             return personRequestRepository.save(personRequest);
 
 
@@ -69,7 +74,12 @@ public class PersonRequestServiceImpl implements PersonRequestService {
     }
 
     @Override
-    public List<PersonRequest> getAllByProductId(Long productId) {
-        return personRequestRepository.getAllByProductId(productId);
+    public List<PersonRequest> getAllByPersonId(Long personId) {
+        return personRequestRepository.getAllRequestByPersonId(personId);
+    }
+
+    @Override
+    public List<PersonRequest> getRequestsByProviderId(Long providerId) {
+        return personRequestRepository.getRequestsByProviderId(providerId);
     }
 }
